@@ -1,2 +1,2 @@
 # omni
-spirit 
+spiritual conversational voice agent
