@@ -32,6 +32,11 @@ MANIFEST
 *.manifest
 *.spec
 
+chroma/
+chroma_db/
+data/
+venv/
+.gradio/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

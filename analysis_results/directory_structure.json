@@ -1,0 +1,440 @@
+{
+  "hindi": {
+    "base_dir": "data/All Avyakt Vani Hindi 1969 - 2020",
+    "exists": true,
+    "subdirs": [
+      {
+        "name": "1977",
+        "pdf_count": 48
+      },
+      {
+        "name": "1989",
+        "pdf_count": 15
+      },
+      {
+        "name": "1981",
+        "pdf_count": 48
+      },
+      {
+        "name": "2003-2004",
+        "pdf_count": 10
+      },
+      {
+        "name": "1999-2000",
+        "pdf_count": 10
+      },
+      {
+        "name": "1974",
+        "pdf_count": 31
+      },
+      {
+        "name": "1996-1997",
+        "pdf_count": 5
+      },
+      {
+        "name": "1984",
+        "pdf_count": 51
+      },
+      {
+        "name": "2013-2014",
+        "pdf_count": 11
+      },
+      {
+        "name": "1975",
+        "pdf_count": 69
+      },
+      {
+        "name": "2012-2013",
+        "pdf_count": 9
+      },
+      {
+        "name": "2004-2005",
+        "pdf_count": 10
+      },
+      {
+        "name": "1998-1999",
+        "pdf_count": 8
+      },
+      {
+        "name": "1973",
+        "pdf_count": 28
+      },
+      {
+        "name": "2007-2008",
+        "pdf_count": 12
+      },
+      {
+        "name": "1983",
+        "pdf_count": 56
+      },
+      {
+        "name": "1997-1998",
+        "pdf_count": 9
+      },
+      {
+        "name": "1993-1994",
+        "pdf_count": 15
+      },
+      {
+        "name": "2000-2001",
+        "pdf_count": 7
+      },
+      {
+        "name": "2001-2002",
+        "pdf_count": 9
+      },
+      {
+        "name": "1970",
+        "pdf_count": 40
+      },
+      {
+        "name": "2016-2017",
+        "pdf_count": 8
+      },
+      {
+        "name": "2002-2003",
+        "pdf_count": 10
+      },
+      {
+        "name": "2010-2011",
+        "pdf_count": 12
+      },
+      {
+        "name": "1990-1991",
+        "pdf_count": 8
+      },
+      {
+        "name": "1982",
+        "pdf_count": 37
+      },
+      {
+        "name": "2018-2019",
+        "pdf_count": 12
+      },
+      {
+        "name": "1992-1993",
+        "pdf_count": 16
+      },
+      {
+        "name": "1988",
+        "pdf_count": 21
+      },
+      {
+        "name": "2017-2018",
+        "pdf_count": 8
+      },
+      {
+        "name": "2009-2010",
+        "pdf_count": 11
+      },
+      {
+        "name": "1994-1995",
+        "pdf_count": 16
+      },
+      {
+        "name": "2008-2009",
+        "pdf_count": 11
+      },
+      {
+        "name": "1980",
+        "pdf_count": 17
+      },
+      {
+        "name": "1979",
+        "pdf_count": 35
+      },
+      {
+        "name": "1972",
+        "pdf_count": 47
+      },
+      {
+        "name": "1969",
+        "pdf_count": 43
+      },
+      {
+        "name": "1990",
+        "pdf_count": 13
+      },
+      {
+        "name": "2015-2016",
+        "pdf_count": 8
+      },
+      {
+        "name": "1978",
+        "pdf_count": 22
+      },
+      {
+        "name": "1987",
+        "pdf_count": 28
+      },
+      {
+        "name": "1985",
+        "pdf_count": 43
+      },
+      {
+        "name": "1995-1996",
+        "pdf_count": 14
+      },
+      {
+        "name": "2019-2020",
+        "pdf_count": 11
+      },
+      {
+        "name": "2006-2007",
+        "pdf_count": 11
+      },
+      {
+        "name": "1971",
+        "pdf_count": 54
+      },
+      {
+        "name": "2014-2015",
+        "pdf_count": 8
+      },
+      {
+        "name": "1976",
+        "pdf_count": 18
+      },
+      {
+        "name": "1986",
+        "pdf_count": 30
+      },
+      {
+        "name": "2011-2012",
+        "pdf_count": 11
+      },
+      {
+        "name": "1991-1992",
+        "pdf_count": 12
+      },
+      {
+        "name": "2005-2006",
+        "pdf_count": 11
+      }
+    ],
+    "total_files": 1107
+  },
+  "english": {
+    "base_dir": "data/All Avyakt English Pdf Murli - 1969-2020(1)",
+    "exists": true,
+    "subdirs": [
+      {
+        "name": "1977",
+        "pdf_count": 45
+      },
+      {
+        "name": "1989",
+        "pdf_count": 15
+      },
+      {
+        "name": "1981",
+        "pdf_count": 46
+      },
+      {
+        "name": "2003-2004",
+        "pdf_count": 10
+      },
+      {
+        "name": "1999-2000",
+        "pdf_count": 6
+      },
+      {
+        "name": "1974",
+        "pdf_count": 28
+      },
+      {
+        "name": "1996-1997",
+        "pdf_count": 5
+      },
+      {
+        "name": "2021-2022",
+        "pdf_count": 12
+      },
+      {
+        "name": "1984",
+        "pdf_count": 51
+      },
+      {
+        "name": "2013-2014",
+        "pdf_count": 11
+      },
+      {
+        "name": "1975",
+        "pdf_count": 55
+      },
+      {
+        "name": "2012-2013",
+        "pdf_count": 9
+      },
+      {
+        "name": "2004-2005",
+        "pdf_count": 10
+      },
+      {
+        "name": "1998-1999",
+        "pdf_count": 8
+      },
+      {
+        "name": "1973",
+        "pdf_count": 28
+      },
+      {
+        "name": "2007-2008",
+        "pdf_count": 12
+      },
+      {
+        "name": "1983",
+        "pdf_count": 49
+      },
+      {
+        "name": "1997-1998",
+        "pdf_count": 9
+      },
+      {
+        "name": "1993-1994",
+        "pdf_count": 15
+      },
+      {
+        "name": "2000-2001",
+        "pdf_count": 7
+      },
+      {
+        "name": "2001-2002",
+        "pdf_count": 9
+      },
+      {
+        "name": "1970",
+        "pdf_count": 38
+      },
+      {
+        "name": "2016-2017",
+        "pdf_count": 8
+      },
+      {
+        "name": "2002-2003",
+        "pdf_count": 10
+      },
+      {
+        "name": "2010-2011",
+        "pdf_count": 12
+      },
+      {
+        "name": "1990-1991",
+        "pdf_count": 8
+      },
+      {
+        "name": "1982",
+        "pdf_count": 34
+      },
+      {
+        "name": "2018-2019",
+        "pdf_count": 12
+      },
+      {
+        "name": "1992-1993",
+        "pdf_count": 16
+      },
+      {
+        "name": "1988",
+        "pdf_count": 21
+      },
+      {
+        "name": "2017-2018",
+        "pdf_count": 8
+      },
+      {
+        "name": "2009-2010",
+        "pdf_count": 11
+      },
+      {
+        "name": "1994-1995",
+        "pdf_count": 14
+      },
+      {
+        "name": "2008-2009",
+        "pdf_count": 11
+      },
+      {
+        "name": "1980",
+        "pdf_count": 17
+      },
+      {
+        "name": "1979",
+        "pdf_count": 34
+      },
+      {
+        "name": "1972",
+        "pdf_count": 41
+      },
+      {
+        "name": "1969",
+        "pdf_count": 43
+      },
+      {
+        "name": "1990",
+        "pdf_count": 12
+      },
+      {
+        "name": "2015-2016",
+        "pdf_count": 8
+      },
+      {
+        "name": "1978",
+        "pdf_count": 22
+      },
+      {
+        "name": "1987",
+        "pdf_count": 28
+      },
+      {
+        "name": "1985",
+        "pdf_count": 43
+      },
+      {
+        "name": "1995-1996",
+        "pdf_count": 14
+      },
+      {
+        "name": "2019-2020",
+        "pdf_count": 11
+      },
+      {
+        "name": "2006-2007",
+        "pdf_count": 11
+      },
+      {
+        "name": "1971",
+        "pdf_count": 51
+      },
+      {
+        "name": "2020-2021",
+        "pdf_count": 7
+      },
+      {
+        "name": "2014-2015",
+        "pdf_count": 8
+      },
+      {
+        "name": "1976",
+        "pdf_count": 11
+      },
+      {
+        "name": "1986",
+        "pdf_count": 30
+      },
+      {
+        "name": "2011-2012",
+        "pdf_count": 11
+      },
+      {
+        "name": "1991-1992",
+        "pdf_count": 12
+      },
+      {
+        "name": "2005-2006",
+        "pdf_count": 11
+      }
+    ],
+    "total_files": 1068
+  }
+}
