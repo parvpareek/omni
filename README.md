@@ -1,279 +1,294 @@
-# 🕉️ Voice-based Spiritual Chatbot
+# 🕉️ Omni - Spiritual Guide
 
-A sophisticated voice-driven conversational AI assistant that provides spiritual guidance based on Avyakt Murli texts. The chatbot supports both Hindi and English and features a modern web interface with voice input/output capabilities.
+A real-time voice and text chatbot powered by spiritual wisdom from Avyakt Murli texts, built with **Pipecat**, **FastAPI**, and **Streamlit**.
 
-## ✨ Features
+## 🌟 Features
 
-- **🎙️ Voice Input/Output**: Natural speech interaction with the assistant
-- **🌐 Multilingual Support**: Seamless Hindi and English conversation
-- **📚 Rich Knowledge Base**: Trained on 2000+ Avyakt Murli spiritual texts (1969-2020+)
-- **🔍 Semantic Search**: Advanced RAG (Retrieval-Augmented Generation) system
-- **💬 Dual Interface**: Both voice and text chat options
-- **🎨 Modern UI**: Clean, responsive web interface built with Gradio
-- **📱 Cross-platform**: Works on desktop and mobile browsers
+- **Real-time Voice & Text Chat**: WebSocket-based streaming communication
+- **Spiritual Guidance**: Personalized advice based on Avyakt Murli wisdom
+- **RAG-Powered Responses**: Retrieval-Augmented Generation with ChromaDB
+- **Multilingual Support**: Hindi and English
+- **Free Tier Services**: Google STT/TTS with generous limits
+- **Modern Architecture**: Pipecat pipeline + FastAPI + Streamlit
 
-## 🛠️ Technology Stack
+## 🏗️ Architecture
 
-- **Language Model**: Google Gemini 1.5 Flash
-- **Vector Database**: ChromaDB for semantic search
-- **Embeddings**: sentence-transformers/paraphrase-multilingual-mpnet-base-v2
-- **Speech-to-Text**: Google Speech Recognition API
-- **Text-to-Speech**: Google Text-to-Speech (gTTS)
-- **Web Framework**: Gradio for interactive UI
-- **Backend**: Python with LangChain framework
+```
+[Streamlit Frontend] ← WebSocket → [FastAPI + Pipecat Pipeline] ←→ [STT/LLM/TTS Services]
+```
 
-## 📊 Dataset Information
-
-The knowledge base contains:
-- **Hindi PDFs**: 1,108 documents
-- **English PDFs**: 1,075 documents
-- **Total**: 2,183+ spiritual texts
-- **Time Period**: 1969-2020+
-- **Storage Requirements**: ~4-6 GB for full dataset
+### Components:
+- **Frontend**: Streamlit web interface with real-time chat
+- **Backend**: FastAPI server with WebSocket transport
+- **Pipeline**: Pipecat framework for streaming audio/text processing
+- **RAG**: Custom processor with ChromaDB + Gemini LLM
+- **Services**: Google STT/TTS (free tier) or OpenAI services
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- Google API Key for Gemini
-- 8GB+ RAM recommended for full dataset
-- Microphone access for voice input
+- Python 3.11+ (conda environment recommended)
+- Google API key for Gemini LLM and STT/TTS
+- ChromaDB with ingested spiritual texts
 
-### 1. Installation
+### Installation
 
+1. **Clone and setup environment**:
 ```bash
-# Clone the repository
 git clone <repository-url>
 cd omni
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+conda create -n omni python=3.11
+conda activate omni
 pip install -r requirements.txt
 ```
 
-### 2. Configuration
-
+2. **Configure environment variables**:
 ```bash
-# Copy environment template
 cp env.example .env
-
-# Edit .env file and add your Google API key
-nano .env
+# Edit .env with your API keys
 ```
 
-Add your Google API key to the `.env` file:
-```
-GOOGLE_API_KEY=your_google_api_key_here
-```
-
-### 3. Data Analysis (Optional)
-
-Run the data analysis script to understand your dataset:
-
-```bash
-python data_analysis.py
-```
-
-This will generate insights about your PDF collection and create analysis reports.
-
-### 4. Data Ingestion
-
-Process and index your spiritual texts:
-
+3. **Ingest spiritual texts** (if not already done):
 ```bash
 python ingest.py
 ```
 
-This will:
-- Load PDF documents from the data directory
-- Extract text and create embeddings
-- Store everything in ChromaDB
-- Create a searchable knowledge base
+### Running the Application
 
-### 5. Launch the Application
+#### Option 1: Full Stack (Recommended)
+
+1. **Start the FastAPI backend**:
+```bash
+python fastapi_server.py
+# Server runs on http://localhost:8000
+```
+
+2. **Start the Streamlit frontend** (in another terminal):
+```bash
+streamlit run streamlit_app.py
+# Frontend runs on http://localhost:8501
+```
+
+3. **Connect and chat**:
+   - Open Streamlit app in browser
+   - Click "Connect" to establish WebSocket connection
+   - Start asking spiritual questions!
+
+#### Option 2: Test Backend Only
 
 ```bash
-python app.py
+python fastapi_server.py
+# Visit http://localhost:8000/test for WebSocket test page
 ```
 
-The application will start on `http://localhost:7860`
+#### Option 3: Direct Pipeline Test
 
-## 📁 Project Structure
-
-```
-omni/
-├── app.py                 # Main application with Gradio interface
-├── ingest.py             # Document processing and indexing
-├── data_analysis.py      # Dataset analysis and insights
-├── requirements.txt      # Python dependencies
-├── env.example          # Environment variables template
-├── README.md            # This file
-├── data/                # Your PDF documents
-│   ├── Hindi.csv        # Hindi document metadata
-│   ├── English.csv      # English document metadata
-│   ├── All Avyakt Vani Hindi 1969 - 2020/
-│   └── All Avyakt English Pdf Murli - 1969-2020(1)/
-├── documents/           # Additional user documents (optional)
-├── chroma_db/          # ChromaDB persistent storage
-└── analysis_results/   # Generated analysis reports
+```bash
+python pipecat_pipeline.py
+# Tests the pipeline components directly
 ```
 
-## 🎯 Usage Guide
+## ⚙️ Configuration
 
-### Voice Chat
-1. Open the "🎤 Voice Chat" tab
-2. Click the microphone button
-3. Speak your question clearly
-4. Get both text and audio responses
-
-### Text Chat
-1. Open the "💬 Text Chat" tab
-2. Type your question
-3. Click "Get Answer" or press Enter
-4. Receive text and audio responses
-
-### Sample Questions
-
-**English:**
-- "What is the importance of meditation in spiritual life?"
-- "How can I develop divine qualities?"
-- "Tell me about the soul's journey"
-- "What is the meaning of spiritual transformation?"
-
-**Hindi:**
-- "आध्यात्मिक जीवन में मन की शुद्धता क्यों आवश्यक है?"
-- "ध्यान कैसे करें?"
-- "आत्मा की यात्रा क्या है?"
-- "दिव्य गुण कैसे विकसित करें?"
-
-## 🔧 Configuration Options
-
-### Environment Variables
+### Environment Variables (.env)
 
 ```bash
 # Required
 GOOGLE_API_KEY=your_google_api_key_here
 
 # Optional
-GEMINI_MODEL=gemini-1.5-flash-latest
-GEMINI_TEMPERATURE=0.7
+USE_CLOUD_CHROMADB=false
+USE_OPENAI_SERVICES=false
 CHROMA_PERSIST_DIR=./chroma_db
-DOCUMENTS_DIR=./documents
+GEMINI_MODEL=gemini-2.0-flash
+GEMINI_TEMPERATURE=0.7
+
+# Server configuration
+HOST=0.0.0.0
+PORT=8000
+FASTAPI_URL=ws://localhost:8000/ws
 ```
 
-### Customization
+### Service Options
 
-- **Model Selection**: Change `GEMINI_MODEL` to use different Gemini variants
-- **Temperature**: Adjust `GEMINI_TEMPERATURE` for response creativity (0.0-1.0)
-- **Chunk Size**: Modify in `ingest.py` for different text processing
-- **Retrieval Count**: Adjust in `app.py` for more/fewer context documents
+#### Google Services (Free Tier - Default)
+- **STT**: 60 minutes/month free
+- **TTS**: 4 million characters/month free
+- **LLM**: Gemini 2.0 Flash (generous free tier)
 
-## 🎭 Advanced Features
+#### OpenAI Services (Paid)
+- Set `USE_OPENAI_SERVICES=true`
+- Requires `OPENAI_API_KEY`
+- Better quality but costs money
 
-### Hybrid Retrieval (Future Enhancement)
-The system is designed to support hybrid retrieval combining:
-- Semantic search (current)
-- Keyword search (planned)
-- Metadata filtering (planned)
+## 📁 Project Structure
 
-### Multi-tenancy Support
-The architecture supports multiple users and applications through:
-- Separate collections per user
-- Metadata-based filtering
-- Access control integration
+```
+omni/
+├── fastapi_server.py      # FastAPI backend with WebSocket
+├── streamlit_app.py       # Streamlit frontend client
+├── pipecat_pipeline.py    # Pipecat pipeline definition
+├── app.py                 # Original Gradio app (legacy)
+├── ingest.py              # Data ingestion script
+├── requirements.txt       # Python dependencies
+├── README.md             # This file
+├── .env                  # Environment variables
+├── chroma_db/            # Local ChromaDB storage
+├── data/                 # Spiritual texts data
+└── tests/                # Test files
+```
 
-### Performance Optimization
-- Batch processing for large datasets
-- Persistent vector storage
-- Memory-efficient chunking
-- Caching for frequent queries
+## 🔧 Technical Details
+
+### Pipecat Pipeline Architecture
+
+```python
+Pipeline([
+    transport.input(),           # WebSocket input
+    rtvi_processor,              # Real-time voice interaction
+    stt_service,                 # Speech-to-text
+    rag_processor,               # Custom RAG logic
+    tts_service,                 # Text-to-speech
+    transport.output()           # WebSocket output
+])
+```
+
+### Custom RAG Processor
+
+The `SpiritualRAGProcessor` integrates:
+- **ChromaDB**: Vector search for spiritual texts
+- **Gemini LLM**: Response generation
+- **Custom Prompts**: Spiritual guidance templates
+- **Source Citations**: Transparent references
+
+### WebSocket Communication
+
+- **Real-time streaming**: Audio/text frames
+- **Bidirectional**: Client ↔ Server
+- **Frame-based**: Pipecat's typed message system
+- **Error handling**: Graceful disconnections
+
+## 🎯 Usage Guide
+
+### Text Chat
+1. Connect to the server
+2. Type your spiritual question
+3. Receive personalized guidance with sources
+
+### Voice Chat (Future)
+- WebSocket supports audio streaming
+- Browser microphone integration
+- Real-time STT → RAG → TTS pipeline
+
+### Sample Questions
+- "What is the importance of meditation in spiritual life?"
+- "How can I develop divine qualities?"
+- "Tell me about the soul's journey"
+- "What is the meaning of spiritual purity?"
+
+## 🧪 Testing
+
+### Run Tests
+```bash
+pytest tests/test_pipeline.py -v
+```
+
+### Test Components
+```bash
+# Test pipeline directly
+python pipecat_pipeline.py
+
+# Test FastAPI server
+python fastapi_server.py
+# Visit http://localhost:8000/test
+
+# Test Streamlit client
+streamlit run streamlit_app.py
+```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-**"No module named 'pyaudio'"**
+**Connection Failed**:
+- Ensure FastAPI server is running on port 8000
+- Check WebSocket URL in Streamlit config
+- Verify network connectivity
+
+**No Responses**:
+- Check if ChromaDB is populated (`python ingest.py`)
+- Verify Google API key is valid
+- Check server logs for errors
+
+**Audio Issues**:
+- Ensure proper audio format (PCM 16-bit)
+- Check microphone permissions
+- Verify STT/TTS service credentials
+
+### Debug Mode
+
 ```bash
-# On Ubuntu/Debian
-sudo apt-get install portaudio19-dev
-pip install pyaudio
-
-# On macOS
-brew install portaudio
-pip install pyaudio
-
-# On Windows
-pip install pipwin
-pipwin install pyaudio
+# Enable debug logging
+export LOG_LEVEL=DEBUG
+python fastapi_server.py
 ```
 
-**"GOOGLE_API_KEY not found"**
-- Ensure your `.env` file exists and contains the API key
-- Check that the key is valid and has appropriate permissions
+## 🔮 Future Enhancements
 
-**"No existing collection found"**
-- Run `python ingest.py` first to create the knowledge base
-- Ensure your data directories contain PDF files
+- **Voice Chat**: Browser microphone integration
+- **Video Support**: Multimodal conversations
+- **User Sessions**: Conversation history
+- **Advanced RAG**: Multi-turn conversations
+- **Mobile App**: React Native client
+- **Cloud Deployment**: Docker + Kubernetes
 
-**Memory Issues**
-- Reduce batch size in `ingest.py`
-- Process documents in smaller chunks
-- Consider using a machine with more RAM
+## 📚 API Reference
 
-### Performance Tips
+### FastAPI Endpoints
 
-1. **For Large Datasets**: Process documents in batches
-2. **Memory Optimization**: Close other applications during ingestion
-3. **Voice Recognition**: Ensure good microphone quality
-4. **Network**: Stable internet connection for API calls
+- `GET /`: API information
+- `GET /health`: Health check
+- `GET /test`: WebSocket test page
+- `POST /chat/text`: Text-only chat
+- `WS /ws`: WebSocket for real-time chat
 
-## 🔄 Future Enhancements
+### WebSocket Messages
 
-### Phase 1 (Current)
-- ✅ Voice input/output
-- ✅ Multilingual support
-- ✅ RAG implementation
-- ✅ Web interface
+```json
+// Send text message
+{
+  "type": "text",
+  "text": "Your question here"
+}
 
-### Phase 2 (Planned)
-- 🔄 Hybrid retrieval system
-- 🔄 Advanced TTS models
-- 🔄 Conversation history
-- 🔄 User authentication
-
-### Phase 3 (Future)
-- 🔄 Mobile app
-- 🔄 Offline mode
-- 🔄 Custom voice training
-- 🔄 API endpoints
-
-## 📜 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+// Receive response
+{
+  "type": "text", 
+  "text": "Spiritual guidance response"
+}
+```
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our contributing guidelines for details.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
 
-## 📧 Support
+## 📄 License
 
-For issues, questions, or suggestions:
-- Create an issue in the repository
-- Check the troubleshooting section
-- Review the documentation
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
-- Avyakt Murli spiritual texts for the knowledge base
-- Google for Gemini API and speech services
-- ChromaDB team for the vector database
-- LangChain community for the RAG framework
-- Gradio team for the web interface
+- **Avyakt Murli texts** for spiritual wisdom
+- **Pipecat team** for the streaming framework
+- **Google** for free tier AI services
+- **ChromaDB** for vector database
+- **Streamlit** for the web interface
 
 ---
 
-*May this spiritual assistant guide you on your journey of inner wisdom and divine understanding.* 🕉️
+**🕉️ May Omni guide you on your spiritual journey! 🕉️**

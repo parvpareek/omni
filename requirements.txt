@@ -1,21 +1,40 @@
-# Core dependencies
-google-generativeai==0.8.3
-langchain==0.3.7
-langchain-google-genai==2.0.5
-langchain-community==0.3.7
-langchain-text-splitters==0.3.2
-chromadb==0.5.23
-sentence-transformers==3.3.1
-torch>=2.0.0
-pydub==0.25.1
-SpeechRecognition==3.12.0
-pyaudio==0.2.14
-gTTS==2.5.4
-gradio==5.8.0
-python-dotenv==1.0.1
-pydantic==2.10.6
-PyPDF2==3.0.1
-python-multipart>=0.0.18
-pandas==2.2.3
-matplotlib==3.9.2
-seaborn==0.13.2 
+# Core dependencies - Fixed versions for compatibility
+langchain>=0.1.0
+langchain-google-genai>=0.0.6
+langchain-huggingface>=0.3.1
+chromadb>=0.4.22
+sentence-transformers>=2.2.2
+
+# Pipecat and streaming - Updated to latest version
+pipecat-ai==0.0.79
+fastapi>=0.104.1
+websockets>=12.0
+uvicorn>=0.24.0
+
+# Audio processing
+soundfile>=0.12.1
+numpy>=1.24.0
+pydub>=0.25.1
+SpeechRecognition>=3.10.0
+gTTS>=2.3.2
+
+# Web framework
+streamlit>=1.28.0
+streamlit-audiorecorder>=0.0.5
+
+# Async and utilities
+asyncio-mqtt>=0.11.0
+aiofiles>=23.0.0
+python-dotenv>=1.0.0
+pydantic-settings>=2.0.0
+
+# Google services
+google-cloud-speech
+google-cloud-texttospeech
+
+# HTTP requests
+requests>=2.31.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

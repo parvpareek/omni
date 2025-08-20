@@ -16,20 +16,18 @@ import re
 import torch
 
 # Core libraries
-from dotenv import load_dotenv
-import chromadb
-from chromadb.config import Settings
+from config import settings
+
+# LangChain imports
 from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain.schema import Document
-
-# Load environment variables
-load_dotenv()
+import chromadb
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO,
+    level=settings.log_level,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
@@ -37,11 +35,7 @@ logger = logging.getLogger(__name__)
 class SpiritualTextsIngestor:
     """Handles ingestion of spiritual texts into ChromaDB"""
     
-    def __init__(self, use_cloud: bool = False):
-        self.use_cloud = use_cloud
-        self.chroma_persist_dir = os.getenv('CHROMA_PERSIST_DIR', './chroma_db')
-        self.documents_dir = os.getenv('DOCUMENTS_DIR', './documents')
-        
+    def __init__(self):
         # Detect and configure device (GPU if available)
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         logger.info(f"Using device: {self.device}")
@@ -63,25 +57,26 @@ class SpiritualTextsIngestor:
             separators=["\n\n", "\n", " ", ""]
         )
         
-        logger.info(f"SpiritualTextsIngestor initialized ({'cloud' if use_cloud else 'local'} mode)")
+        logger.info(f"SpiritualTextsIngestor initialized ({'cloud' if settings.use_cloud_chromadb else 'local'} mode)")
     
     def _initialize_chromadb(self):
         """Initialize ChromaDB client (cloud or local)"""
-        if self.use_cloud:
+        if settings.use_cloud_chromadb:
             # Cloud ChromaDB setup
-            chroma_api_key = os.getenv('CHROMA_API_KEY')
-            if not chroma_api_key:
-                raise ValueError("CHROMA_API_KEY not found in environment variables for cloud mode")
+            if not all([settings.chroma_api_key, settings.chroma_tenant, settings.chroma_database]):
+                raise ValueError("Missing required environment variables for cloud mode. Please set CHROMA_API_KEY, CHROMA_TENANT, and CHROMA_DATABASE")
             
             logger.info("Connecting to ChromaDB Cloud...")
-            self.chroma_client = chromadb.HttpClient(
-                host="https://api.trychroma.com",
-                headers={"Authorization": f"Bearer {chroma_api_key}"}
+            self.chroma_client = chromadb.CloudClient(
+                api_key=settings.chroma_api_key,
+                tenant=settings.chroma_tenant,
+                database=settings.chroma_database
             )
+            logger.info(f"Connected to ChromaDB Cloud database: {settings.chroma_database}")
         else:
             # Local ChromaDB setup
             logger.info("Connecting to local ChromaDB...")
-            self.chroma_client = chromadb.PersistentClient(path=self.chroma_persist_dir)
+            self.chroma_client = chromadb.PersistentClient(path=settings.chroma_persist_dir)
     
     def extract_metadata_from_path(self, file_path: str) -> Dict[str, Any]:
         """Extract metadata from file path and name"""
@@ -343,26 +338,22 @@ def main():
     parser = argparse.ArgumentParser(description='Ingest spiritual texts into ChromaDB')
     parser.add_argument('--cloud', action='store_true', 
                        help='Use ChromaDB Cloud instead of local database')
-    parser.add_argument('--local', action='store_true', 
-                       help='Use local ChromaDB (default)')
     
     args = parser.parse_args()
     
-    # Determine which database to use
-    use_cloud = args.cloud
-    if args.local and args.cloud:
-        logger.error("Cannot specify both --cloud and --local. Choose one.")
-        sys.exit(1)
+    # Update settings based on command line arguments
+    if args.cloud:
+        settings.use_cloud_chromadb = True
     
-    logger.info(f"Starting ingestion in {'cloud' if use_cloud else 'local'} mode")
+    logger.info(f"Starting ingestion in {'cloud' if settings.use_cloud_chromadb else 'local'} mode")
     
     # Initialize ingestor
-    ingestor = SpiritualTextsIngestor(use_cloud=use_cloud)
+    ingestor = SpiritualTextsIngestor()
     
     # Check if data directories exist
     hindi_dir = Path('data/All Avyakt Vani Hindi 1969 - 2020')
     english_dir = Path('data/All Avyakt English Pdf Murli - 1969-2020(1)')
-    documents_dir = Path(ingestor.documents_dir)
+    documents_dir = Path(settings.documents_dir)
     
     if not hindi_dir.exists() and not english_dir.exists() and not documents_dir.exists():
         logger.warning("No data directories found. Creating sample documents for testing...")

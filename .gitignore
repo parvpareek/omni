@@ -210,3 +210,18 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+PHASE0_IMPLEMENTATION.md
+# Project-specific ignores
+# Ignore only top-level files that start with "test" (keeps the `tests/` directory tracked)
+/test*.*
+
+# Ignore local notes file
+GEMINI.md
+/node_modules/
+OPTIMIZATION_CHECKLIST.md
+PIPECAT_KNOWLEDGE_BASE.md
+PHASE0_IMPLEMENTATION.md
+MVP_IMPLEMENTATION_PLAN.md
+/config/
+/chroma_db/
+/data/
